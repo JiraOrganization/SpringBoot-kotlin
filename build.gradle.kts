@@ -10,7 +10,7 @@ plugins {
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 configurations {
     compileOnly {
@@ -24,9 +24,9 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    //implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    //implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -34,16 +34,19 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
-    runtimeOnly("io.r2dbc:r2dbc-h2")
+    //runtimeOnly("io.r2dbc:r2dbc-h2")
     annotationProcessor("org.projectlombok:lombok")
+
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.ninja-squad:springmockk:3.1.1")
     testImplementation("io.projectreactor:reactor-test")
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+        jvmTarget = "11"
     }
 }
 
