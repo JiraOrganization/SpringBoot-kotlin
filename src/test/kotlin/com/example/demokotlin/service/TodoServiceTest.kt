@@ -2,25 +2,15 @@ package com.example.demokotlin.service
 
 import com.example.demokotlin.domian.Todo
 import com.example.demokotlin.domian.TodoRepository
-import com.ninjasquad.springmockk.MockkBean
-import io.mockk.every
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertThrows
-import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.http.HttpStatus
-import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDateTime
 
-//@ExtendWith(SpringExtension::class)
 @SpringBootTest
 internal class TodoServiceTest @Autowired constructor(
     val todoService: TodoService,
@@ -66,8 +56,9 @@ internal class TodoServiceTest @Autowired constructor(
     @Test
     fun `존재 하지 않는 Id 대상 찾기`() {
         // given
-        val id = 1L
+        val id = -9999L
         var todo: Todo?
+
         // when
         var exception = assertThrows<ResponseStatusException> {
             todo = todoService.findById(id)
